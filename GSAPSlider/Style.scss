@@ -1,0 +1,104 @@
+﻿$slider-width:  100%;
+$slider-height: 100vh; //inherit; //if the height of the container is fixed, use 'inherit'
+//TO DO: If the parent height is not auto, set the height to 100vh
+
+//controls
+$slide-controls-color:  rgba(255,255,255,0.5);//white;
+$slide-control-size: 5em;
+
+//centers image
+@mixin position-center() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.slider-container {
+    width: $slider-width;
+    height: $slider-height;
+    background-color: red; //for debugging
+    position: relative;
+
+    > .slider-elements {
+        width: inherit;
+        height: inherit;
+        position: relative;
+        overflow: hidden;
+
+        > .slider-image-container {
+            width: inherit;
+            height: inherit;
+            position: absolute; //was relative, check later for overlay issues
+            overflow: hidden;
+            //display:none;
+            > img {
+                @include position-center();
+            }
+
+            > .scale-width {
+                width: 100%;
+            }
+
+            > .scale-height {
+                height: 100%;
+            }
+        }
+    }
+    //controls
+    .slider-controls {
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        top: 0;
+
+        > i.slide-left {
+            position: absolute;
+            top: 50%;
+            left: 2%;
+            -moz-transform: translate(0, -50%);
+            -ms-transform: translate(0, -50%);
+            -o-transform: translate(0, -50%);
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            font-size: $slide-control-size;
+            color: $slide-controls-color;
+        }
+
+        > i.slide-right {
+            position: absolute;
+            top: 50%;
+            right: 2%;
+            -moz-transform: translate(0, -50%);
+            -ms-transform: translate(0, -50%);
+            -o-transform: translate(0, -50%);
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            font-size: $slide-control-size;
+            color: $slide-controls-color;
+        }
+
+        > i {
+            -moz-transition: .2s ease-in-out;
+            -o-transition: .2s ease-in-out;
+            -webkit-transition: .2s ease-in-out;
+            transition: .2s ease-in-out;
+
+            &:hover {
+                //font-size:1.25 * $slide-control-size;
+                color: rgba(255,255,255,1);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.test {
+  //margin:0px 300px;
+  //width:300px;
+  //height:300px;
+}
